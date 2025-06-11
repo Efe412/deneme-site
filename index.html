@@ -1,45 +1,53 @@
-<!DOCTYPE html>
-<html lang="tr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Efe'nin Sitesi</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <header>
-        <h1>🌟 Efe'nin Harika Web Sitesi 🌟</h1>
-        <nav>
-            <a href="#hakkimda">Hakkımda</a>
-            <a href="#projeler">Projeler</a>
-            <a href="#iletisim">İletişim</a>
-        </nav>
-    </header>
+const express = require('express');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
+const app = express();
 
-    <section id="hakkimda">
-        <h2>Hakkımda</h2>
-        <p>Merhaba! Ben Efe. Web geliştirmeyi öğreniyorum ve bu benim deneme sitem.</p>
-    </section>
+// Bağlantı ayarları
+mongoose.connect('mongodb://localhost:27017/mini-discord', { useNewUrlParser: true, useUnifiedTopology: true });
 
-    <section id="projeler">
-        <h2>Projelerim</h2>
-        <div class="project-card">
-            <h3>İlk Projem</h3>
-            <p>Bu benim ilk web projem. 🎉</p>
-        </div>
-        <div class="project-card">
-            <h3>İkinci Projem</h3>
-            <p>Yakında burada yeni projeler olacak 🚀</p>
-        </div>
-    </section>
+// Kullanıcı modeli
+const User = mongoose.model('User', {
+  username: String,
+  password: String
+});
 
-    <section id="iletisim">
-        <h2>İletişim</h2>
-        <p>Bana ulaşmak için: <a href="mailto:efe@example.com">efe@example.com</a></p>
-    </section>
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static("public"));
+app.set('view engine', 'ejs');
 
-    <footer>
-        <p>© 2025 Efe Yiğit Alemdar | Tüm hakları saklıdır.</p>
-    </footer>
-</body>
-</html>
+// Ana sayfa
+app.get('/', (req, res) => {
+  res.render('index');
+});
+
+// Kayıt sayfası
+app.get('/register', (req, res) => {
+  res.render('register');
+});
+
+app.post('/register', async (req, res) => {
+  const hashedPassword = await bcrypt.hash(req.body.password, 10);
+  const user = new User({ username: req.body.username, password: hashedPassword });
+  await user.save();
+  res.redirect('/login');
+});
+
+// Giriş sayfası
+app.get('/login', (req, res) => {
+  res.render('login');
+});
+
+app.post('/login', async (req, res) => {
+  const user = await User.findOne({ username: req.body.username });
+  if (user && await bcrypt.compare(req.body.password, user.password)) {
+    res.send("Giriş başarılı! 🚀");
+  } else {
+    res.send("Kullanıcı adı veya şifre yanlış.");
+  }
+});
+
+app.listen(3000, () => {
+  console.log('Mini Discord çalışıyor: http://localhost:3000');
+});
