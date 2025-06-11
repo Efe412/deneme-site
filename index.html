@@ -1,16 +1,193 @@
 <!DOCTYPE html>
 <html lang="tr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deneme Web Sitem</title>
-    <link rel="stylesheet" href="style.css">
-</head>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>ℰ𝒻𝑒 𝒴𝒾ğ𝒾𝓉 𝒜𝓁𝑒𝓂𝒹𝒶𝓇 - Film Platformu</title>
+        <link rel="icon" href="images-photoaidcom-cropped.ico" type="image/x-icon">
+        <link rel="stylesheet" href="style.css" />
+    </head>
 <body>
-    <div class="container">
-        <h1>Hoş Geldin Efe!</h1>
-        <p>Bu benim ilk denemelik web site:Dm. 🎉</p>
-        <button onclick="alert('Butona tıkladın!')">Tıkla Bakalım</button>
-    </div>
+    <!-- Header -->
+    <header class="main-header">
+        <div class="header-left">
+            <div class="logo-section">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBO1_Rqy2ACpePCxkZo66eQQN3w_viT2L2vg&s" alt="Logo" class="header-logo" />
+                <h1>Efe Yiğit Alemdar</h1>
+            </div>
+            <nav>
+                <a href="#" onclick="showHome()" class="nav-active">Keşfet</a>
+                <a href="#" onclick="showMovies()">Filmler</a>
+                <a href="#" onclick="showSeries()">Diziler</a>
+                <a href="#" onclick="showCategories()">Türler</a>
+            </nav>
+        </div>
+        <div class="header-right">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Film veya Dizi Ara (IMDb ID, Orijinal veya Türkçe adı)" />
+                <button onclick="searchContent()">🎬</button>
+            </div>
+            <button class="theme-toggle" onclick="toggleTheme()">Tema</button>
+        </div>
+    </header>
+
+    <!-- Sol Menü -->
+    <aside class="sidebar">
+        <div class="sidebar-section">
+            <h3>Efeflix Film ve Dizi Arşivi</h3>
+        </div>
+
+        <div class="sidebar-section">
+            <h4>Yakında Gelecek Filmler</h4>
+            <div class="upcoming-movies">
+                <div class="upcoming-item">
+                    <span class="date-badge">25 Haz</span>
+                    <span class="movie-title">M3GAN 2.0</span>
+                </div>
+                <div class="upcoming-item">
+                    <span class="date-badge">25 Haz</span>
+                    <span class="movie-title">F1</span>
+                </div>
+                <div class="upcoming-item">
+                    <span class="date-badge">01 Tem</span>
+                    <span class="movie-title">Jurassic World Yeniden Doğuş</span>
+                </div>
+                <div class="upcoming-item">
+                    <span class="date-badge">09 Tem</span>
+                    <span class="movie-title">Superman</span>
+                </div>
+                <div class="upcoming-item">
+                    <span class="date-badge">10 Tem</span>
+                    <span class="movie-title">Şirinler Filmi</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="sidebar-section">
+            <h4>Kategoriler</h4>
+            <ul class="category-list">
+                <li><a href="#" onclick="filterByCategory('all')" class="active">Tümü</a></li>
+                <li><a href="#" onclick="filterByCategory('aksiyon')">Aksiyon</a></li>
+                <li><a href="#" onclick="filterByCategory('komedi')">Komedi</a></li>
+                <li><a href="#" onclick="filterByCategory('gerilim')">Gerilim</a></li>
+                <li><a href="#" onclick="filterByCategory('romantik')">Romantik</a></li>
+                <li><a href="#" onclick="filterByCategory('korku')">Korku</a></li>
+                <li><a href="#" onclick="filterByCategory('drama')">Drama</a></li>
+                <li><a href="#" onclick="filterByCategory('animasyon')">Animasyon</a></li>
+            </ul>
+        </div>
+
+        <div class="sidebar-section">
+            <h4>Dillere Göre Filmler</h4>
+            <ul class="language-list">
+                <li><a href="#" onclick="filterByLanguage('tr')">🇹🇷 Türkçe Dublaj</a></li>
+                <li><a href="#" onclick="filterByLanguage('en')">🇺🇸 İngilizce</a></li>
+                <li><a href="#" onclick="filterByLanguage('ko')">🇰🇷 Korece</a></li>
+                <li><a href="#" onclick="filterByLanguage('ja')">🇯🇵 Japonca</a></li>
+            </ul>
+        </div>
+    </aside>
+
+    <!-- Ana İçerik -->
+    <main class="main-content">
+        <!-- Hero Carousel -->
+        <section class="hero-carousel">
+            <div class="carousel-container">
+                <div class="hero-slide active">
+                    <img src="https://image.tmdb.org/t/p/original/yDHYTfA3R0jFYba16jBB1ef8oIt.jpg" alt="Hero Movie" />
+                    <div class="hero-overlay">
+                        <div class="hero-content">
+                            <h1>A Working Man</h1>
+                            <div class="hero-info">
+                                <span class="year">2025</span>
+                                <span class="rating">⭐ 5.7</span>
+                                <span class="duration">420 dk</span>
+                            </div>
+                            <p>Dublaj & Altyazılı</p>
+                            <div class="hero-buttons">
+                                <button class="play-btn">▶ İzle</button>
+                                <button class="info-btn">ℹ Bilgi</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-btn prev" onclick="previousSlide()">‹</button>
+            <button class="carousel-btn next" onclick="nextSlide()">›</button>
+        </section>
+
+        <!-- İçerik Bölümleri -->
+        <section class="content-section">
+            <div class="section-header">
+                <h2 id="categoryTitle">Popüler Filmler</h2>
+                <a href="#" class="see-all">Tümünü Gör ›</a>
+            </div>
+            <div class="content-grid" id="popularContent">
+                <!-- Popüler filmler buraya eklenecek -->
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="section-header">
+                <h2>Yeni Eklenenler</h2>
+                <a href="#" class="see-all">Tümünü Gör ›</a>
+            </div>
+            <div class="content-grid" id="newContent">
+                <!-- Yeni filmler buraya eklenecek -->
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="section-header">
+                <h2>Aksiyon Filmleri</h2>
+                <a href="#" class="see-all">Tümünü Gör ›</a>
+            </div>
+            <div class="content-grid" id="actionContent">
+                <!-- Aksiyon filmleri buraya eklenecek -->
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="section-header">
+                <h2>Korku Filmleri</h2>
+                <a href="#" class="see-all">Tümünü Gör ›</a>
+            </div>
+            <div class="content-grid" id="horrorContent">
+                <!-- Korku filmleri buraya eklenecek -->
+            </div>
+        </section>
+
+        <!-- Kategori İçeriği -->
+        <section class="content-section" id="categorySection" style="display: none;">
+            <div class="section-header">
+                <h2 id="categoryDisplayTitle">Kategoriye Göre Filmler</h2>
+            </div>
+            <div class="content-grid" id="categoryContent">
+                <!-- Kategori filmleri buraya eklenecek -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Bottom Navigation (Mobile) -->
+    <nav class="bottom-nav">
+        <a href="#" onclick="showHome()" class="nav-item active">
+            <span class="nav-icon">🏠</span>
+            <span>Ana Sayfa</span>
+        </a>
+        <a href="#" onclick="showMovies()" class="nav-item">
+            <span class="nav-icon">🎬</span>
+            <span>Filmler</span>
+        </a>
+        <a href="#" onclick="showSeries()" class="nav-item">
+            <span class="nav-icon">📺</span>
+            <span>Diziler</span>
+        </a>
+        <a href="#" onclick="showProfile()" class="nav-item">
+            <span class="nav-icon">👤</span>
+            <span>Profil</span>
+        </a>
+    </nav>
+
+    <script src="app.js"></script>
 </body>
 </html>
