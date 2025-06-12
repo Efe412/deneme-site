@@ -1,12 +1,3 @@
-// Sayfa geçişleri
-let currentPage = 1;
-function nextPage() {
-  document.getElementById(`page${currentPage}`).classList.add('hidden');
-  currentPage++;
-  if (document.getElementById(`page${currentPage}`))
-    document.getElementById(`page${currentPage}`).classList.remove('hidden');
-}
-
 // Kalp animasyonu
 const canvas = document.getElementById("hearts");
 const ctx = canvas.getContext("2d");
@@ -26,7 +17,7 @@ function createHeart() {
     x: Math.random() * width,
     y: -50,
     size: 20 + Math.random() * 20,
-    speed: 1 + Math.random() * 3
+    speed: 0.5 + Math.random() * 1
   });
 }
 
@@ -37,7 +28,7 @@ function drawHeart(x, y, size) {
 
 function animate() {
   ctx.clearRect(0, 0, width, height);
-  if (Math.random() < 0.1) createHeart();
+  if (Math.random() < 0.05) createHeart();
   hearts.forEach((heart, index) => {
     heart.y += heart.speed;
     drawHeart(heart.x, heart.y, heart.size);
