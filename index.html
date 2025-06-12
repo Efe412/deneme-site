@@ -1,53 +1,53 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
-const app = express();
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Anneye Özel</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            color: #fff;
+        }
 
-// Bağlantı ayarları
-mongoose.connect('mongodb://localhost:27017/mini-discord', { useNewUrlParser: true, useUnifiedTopology: true });
+        .container {
+            background-color: rgba(0,0,0,0.4);
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
 
-// Kullanıcı modeli
-const User = mongoose.model('User', {
-  username: String,
-  password: String
-});
+        h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static("public"));
-app.set('view engine', 'ejs');
+        p {
+            font-size: 24px;
+        }
 
-// Ana sayfa
-app.get('/', (req, res) => {
-  res.render('index');
-});
-
-// Kayıt sayfası
-app.get('/register', (req, res) => {
-  res.render('register');
-});
-
-app.post('/register', async (req, res) => {
-  const hashedPassword = await bcrypt.hash(req.body.password, 10);
-  const user = new User({ username: req.body.username, password: hashedPassword });
-  await user.save();
-  res.redirect('/login');
-});
-
-// Giriş sayfası
-app.get('/login', (req, res) => {
-  res.render('login');
-});
-
-app.post('/login', async (req, res) => {
-  const user = await User.findOne({ username: req.body.username });
-  if (user && await bcrypt.compare(req.body.password, user.password)) {
-    res.send("Giriş başarılı! 🚀");
-  } else {
-    res.send("Kullanıcı adı veya şifre yanlış.");
-  }
-});
-
-app.listen(3000, () => {
-  console.log('Mini Discord çalışıyor: http://localhost:3000');
-});
+        .footer {
+            margin-top: 40px;
+            font-size: 20px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Anne, iyi ki varsın! ❤️</h1>
+        <p>Sen benim en büyük kahramanımsın.</p>
+        <p>Her zaman yanımda olduğun için çok teşekkür ederim.</p>
+        <div class="footer">
+            Üvey oğlun: Efe 😄
+        </div>
+    </div>
+</body>
+</html>
