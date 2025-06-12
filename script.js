@@ -1,3 +1,12 @@
+// Sayfa geçişleri
+let currentPage = 1;
+function nextPage() {
+  document.getElementById(`page${currentPage}`).classList.add('hidden');
+  currentPage++;
+  if (document.getElementById(`page${currentPage}`))
+    document.getElementById(`page${currentPage}`).classList.remove('hidden');
+}
+
 // Kalp animasyonu
 const canvas = document.getElementById("hearts");
 const ctx = canvas.getContext("2d");

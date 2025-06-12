@@ -16,6 +16,14 @@ body {
   transform: translateY(-50%);
 }
 
+.page {
+  transition: opacity 0.5s;
+}
+
+.hidden {
+  display: none;
+}
+
 h1 {
   font-size: 48px;
   margin-bottom: 20px;
@@ -35,8 +43,20 @@ p {
   box-shadow: 0 0 15px rgba(0,0,0,0.5);
 }
 
+button {
+  margin-top: 30px;
+  padding: 15px 30px;
+  font-size: 18px;
+  background: #fff;
+  border: none;
+  border-radius: 30px;
+  color: #ff5e78;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
 .footer {
-  margin-top: 40px;
+  margin-top: 50px;
   font-size: 20px;
   font-style: italic;
 }

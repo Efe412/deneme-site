@@ -4,15 +4,29 @@
   <meta charset="UTF-8">
   <title>Anneye Özel</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
 
   <div class="container">
-    <h1>Anne, İyi ki Varsın ❤️</h1>
-    <img src="https://i.imgur.com/uFdep9P.jpeg" alt="Annem" class="photo">
-    <p>Sen her zaman benim kahramanımsın.</p>
-    <p>Varlığın bana güç veriyor. Seni çok seviyorum.</p>
-    <div class="footer">Üvey oğlun: Efe 😄</div>
+    <div class="page" id="page1">
+      <h1>Anne, İyi ki Varsın ❤️</h1>
+      <img src="https://i.imgur.com/uFdep9P.jpeg" alt="Annem" class="photo">
+      <p>Sen benim için her şeyden değerlisin.</p>
+      <button onclick="nextPage()">Devam Et</button>
+    </div>
+
+    <div class="page hidden" id="page2">
+      <h1>Sen her zaman yanımdasın 🌸</h1>
+      <p>Sevgin bana güç veriyor.</p>
+      <button onclick="nextPage()">Devam Et</button>
+    </div>
+
+    <div class="page hidden" id="page3">
+      <h1>Sonsuza kadar seveceğim 💖</h1>
+      <p>İyi ki varsın anne. Her şey seninle güzel.</p>
+      <div class="footer">Üvey oğlun: Efe 😄</div>
+    </div>
   </div>
 
   <audio autoplay loop>
