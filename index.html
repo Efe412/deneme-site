@@ -1,53 +1,34 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <title>Anneye Özel</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', sans-serif;
-            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            text-align: center;
-            color: #fff;
-        }
-
-        .container {
-            background-color: rgba(0,0,0,0.4);
-            padding: 50px;
-            border-radius: 20px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.5);
-        }
-
-        h1 {
-            font-size: 48px;
-            margin-bottom: 20px;
-        }
-
-        p {
-            font-size: 24px;
-        }
-
-        .footer {
-            margin-top: 40px;
-            font-size: 20px;
-            font-style: italic;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Anneye Özel</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Anne, iyi ki varsın! ❤️</h1>
-        <p>Sen benim en büyük kahramanımsın.</p>
-        <p>Her zaman yanımda olduğun için çok teşekkür ederim.</p>
-        <div class="footer">
-            Üvey oğlun: Efe 😄
-        </div>
+
+  <div class="container">
+    <div class="page" id="page1">
+      <h1>Anne, iyi ki varsın! ❤️</h1>
+      <p>Sen benim her şeyimsin.</p>
+      <button onclick="nextPage()">Devam Et</button>
     </div>
+
+    <div class="page hidden" id="page2">
+      <h1>Sonsuz sevgimle... 💖</h1>
+      <p>Her zaman yanımda olduğun için teşekkür ederim.</p>
+      <button onclick="nextPage()">Devam Et</button>
+    </div>
+
+    <div class="page hidden" id="page3">
+      <h1>Sen benim kahramanımsın! 🌟</h1>
+      <p>İyi ki varsın, iyi ki annemsin.</p>
+      <div class="footer">Üvey oğlun: Efe 😄</div>
+    </div>
+  </div>
+
+  <canvas id="hearts"></canvas>
+
+  <script src="script.js"></script>
 </body>
 </html>
